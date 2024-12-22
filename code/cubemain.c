@@ -5,41 +5,33 @@
 Cube create_cube(int);
 
 int main(){
-    Cube cubelmao;
+    Cube cube;
     
-    cubelmao.data = malloc(sizeof(*cubelmao.data) * CUBE_SIZE);
-    if (cubelmao.data == NULL) {
-        printf("malloc cubelmao.data ERROR! \n");
+    cube.data = malloc(sizeof(*cube.data) * CUBE_SIZE);
+    if (cube.data == NULL) {
+        printf("malloc cube.data ERROR! \n");
         return 1;
     }
 
-    cubelmao.top = cubelmao.data;
-    cubelmao.left = cubelmao.data + 9;
-    cubelmao.front = cubelmao.data + 18;
-    cubelmao.right = cubelmao.data + 27;
-    cubelmao.back = cubelmao.data + 36;
-    cubelmao.bottom = cubelmao.data + 45;
+    cube.top = cube.data;
+    cube.left = cube.data + 9;
+    cube.front = cube.data + 18;
+    cube.right = cube.data + 27;
+    cube.back = cube.data + 36;
+    cube.bottom = cube.data + 45;
     
-    for(int i = 0; i < CUBE_SIZE; i++)
-        cubelmao.data[i] = 0;
+  /*   for(int i = 0; i < CUBE_SIZE; i++)
+        cube.data[i] = 0;
 
     for(int i = 0; i < CUBE_FACE_SIZE; i++)
-        cubelmao.left[i] = 8;
+        cube.left[i] = 4;
 
     for(int i = 0; i < CUBE_SIZE; i++)
-        printf("i+%d = %d\n", i, cubelmao.data[i]);
-    free(cubelmao.data);
-    return 0;
-}
+        printf("i+%d = %d\n", i, cube.data[i]); */
 
-Cube create_cube(int size) {
-    Cube cube;
-    cube.data = malloc(size);
-    cube.top = cube.data + MAPPING_TOP;
-    cube.left = cube.data + MAPPING_LEFT;
-    cube.front = cube.data + MAPPING_FRONT;
-    cube.right = cube.data + MAPPING_RIGHT;
-    cube.back = cube.data + MAPPING_BACK;
-    cube.bottom = cube.data + MAPPING_BOTTOM;
-    return cube;
+    resetCube(cube.data);
+    drawCube(cube.data);
+    
+    free(cube.data);
+    return 0;
 }

@@ -1,12 +1,9 @@
-#define CUBE_SIZE 3*3*6
+#pragma once
+
+#define CUBE_SIZE 54
 #define CUBE_FACE_SIZE 9
 
-#define MAPPING_TOP 0
-#define MAPPING_LEFT 9
-#define MAPPING_FRONT 18
-#define MAPPING_RIGHT 27
-#define MAPPING_BACK 36
-#define MAPPING_BOTTOM 45
+#define RESET_COLOR 6
 
 typedef struct {
     int* data; 
@@ -18,3 +15,6 @@ typedef struct {
     int* bottom;
 } Cube;
 
+void drawCube(int *cube);
+void setColor(int n);
+void resetCube(int *cube);
