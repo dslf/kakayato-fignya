@@ -5,17 +5,6 @@
 
 #define RESET_COLOR 6
 
-typedef struct {
-    int* data; 
-    int* buff;
-    int* top; 
-    int* left;
-    int* front;
-    int* right;
-    int* back; 
-    int* bottom;
-} Cube;
-
 #define MAPPING_TOP 0
 #define MAPPING_LEFT 9
 #define MAPPING_FRONT 18
@@ -45,8 +34,6 @@ typedef struct {
 #define Di 25
 
 void drawCube(int *cube);
-void setColor(int n);
 void resetCube(int *cube);
-void rotateCube(const char *str, int *cube_arr, int *buffer_arr);
-void rotateSide(int direction, int *cube_arr, int *buffer_arr);
-char sColor(int n);
+void rotateCube(const char *str, int *cube_arr);
+void rotateSide(int direction, int *cube_arr);

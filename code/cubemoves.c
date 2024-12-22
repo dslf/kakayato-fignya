@@ -2,7 +2,9 @@
 #include <string.h>
 #include "defines.h"
 
-void rotateSide(int direction, int *cube_arr, int *buffer_arr) {   
+void rotateSide(int direction, int *cube_arr) {   
+
+    int* buffer_arr = cube_arr + CUBE_SIZE;
 
 	memcpy(buffer_arr, cube_arr, sizeof(*cube_arr) * CUBE_SIZE);
 
