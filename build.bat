@@ -4,7 +4,8 @@
 ::if %errorlevel% neq 0 goto end
 ::.\bin\taikore34.exe
 
-gcc -Wall -Wextra -std=c2x -pedantic code\cubemain.c code\cubefunc.c -o bin\cubemain.exe
+::gcc -Wall -Wextra -std=c2x -pedantic code\cubemain.c code\cubefunc.c code\cubemoves.c -o bin\cubemain.exe
+gcc -Wall -Wextra -std=c2x -pedantic code\cubemain.c -o bin\cubemain.exe
 if %errorlevel% neq 0 goto end
 .\bin\cubemain.exe
 
