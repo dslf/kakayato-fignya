@@ -1,41 +1,33 @@
 #include <stdio.h>
 #include "cubemain.h"
 
-
 void drawCube(int *cube) {
 	int i, j, k = 0;
     printf("\n");
-	/* Top (White) */
-	for (j = 0; j < 9; j++) {
+
+	for (j = 0; j < 9; j++) {       // Top row, white
 		if (k == 0) {
-			setColor(RESET_COLOR);
-			printf("       ");
+			printf("\033[0m       ");
 		}
 		if (k == 3) {
 			k = 0;
-			printf("\n");
-			setColor(RESET_COLOR);
-			printf("       ");
+			printf("\n\033[0m       ");
 		}
 		setColor(cube[0+j]);
-		printf("  ");
-		setColor(RESET_COLOR);
+		printf("  \033[0m");
 		k++;
 	}
 	printf("\n\n");
 	k = 0;
     
-	/* Middle row (Orange, Green, Red, Blue) */
-	for (i = 1; i < 5; ++i)
+	for (i = 1; i < 5; ++i)         // Middle row (Orange, Green, Red, Blue) 
 		for (j = 0; j < 3; j++) {
         if (k == 3) {
             k = 0;
-            setColor(RESET_COLOR);
-            printf(" ");
+            printf("\033[0m ");
         }
         setColor(cube[CUBE_FACE_SIZE * i + j]);
-        printf("  ");
-        setColor(RESET_COLOR);
+        printf("  \033[0m");      
         ++k;
     }
 	printf("\n");
@@ -44,13 +36,11 @@ void drawCube(int *cube) {
 	for (i = 1; i < 5; ++i)
 		for (j = 3; j < 6; j++) {
         if (k == 3) {
-            k = 0;
-            setColor(RESET_COLOR);
-            printf(" ");
+            k = 0;           
+            printf("\033[0m ");
         }
         setColor(cube[CUBE_FACE_SIZE *i+j]);
-        printf("  ");
-        setColor(RESET_COLOR);
+        printf("  \033[0m");       
         ++k;
     }
 	printf("\n");
@@ -59,33 +49,27 @@ void drawCube(int *cube) {
 	for (i = 1; i < 5; ++i)
 		for (j = 6; j < 9; j++) {
         if (k == 3) {
-            k = 0;
-            setColor(RESET_COLOR);
-            printf(" ");
+            k = 0;           
+            printf("\033[0m ");
         }
         setColor(cube[CUBE_FACE_SIZE *i+j]);
-        printf("  ");
-        setColor(RESET_COLOR);
+        printf("  \033[0m");       
         ++k;
     }
 	printf("\n");
     
 	for (j = 0; j < 9; j++) {
 		if (k == 0) {
-			setColor(RESET_COLOR);
-			printf("       ");
+			printf("\033[0m       ");
 		}
 		if (k == 3) {
-			k = 0;
-			printf("\n");
-			setColor(RESET_COLOR);
-			printf("       ");
+			k = 0;			
+			printf("\n\033[0m       ");
 		}
         
 		/* Bottom (Yellow) */
 		setColor(cube[CUBE_FACE_SIZE *5+j]);
-		printf("  ");
-		setColor(RESET_COLOR);
+		printf("  \033[0m");		
 		k++;
 	}
 	printf("\n");
@@ -102,11 +86,8 @@ void setColor(int n){
 }
 
 void resetCube(int *cube){
-	int i,j;
-	int k=0;
-	for (i = 0; i < 6; i++)
-		for(j = 0; j < 9; j++){
-        cube[k] = i;
-        k++;
-	}
+    int k = 0;
+	for (int i = 0; i < 6; i++)
+		for(int j = 0; j < 9; j++, k++)
+            cube[k] = i;
 }
