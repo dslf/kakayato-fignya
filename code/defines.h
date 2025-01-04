@@ -34,6 +34,8 @@
 
 void drawCube(int *cube);
 void resetCube(int *cube);
+void set_cube_matrix(int *cube);
+void print_cube_matrix(int *cube);
 void rotateCube(const char *scramble, int *cube_arr);
 void rotateSide(int direction, int *cube_arr);
 char* generateScramble();

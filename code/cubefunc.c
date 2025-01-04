@@ -213,18 +213,23 @@ char* generateScramble() {
 }
 
 char *generateBetterAIScramble() {
-    int i = 0;    
+    int i = 0, rando = 0;    
     char* p_arr = malloc(sizeof(char) * 40);
     char letters[] = "LRUDFB", prev = 90;
     char* moves[] = {"", "2", "'"};
 
-    srand(time(NULL));
+    srand(time(NULL)); 
+       
+    rando = rand() % 6;
+    char c = letters[rando];
+    
     while(i < 25) {
-        p_arr[i] = rand() % 6;
-        printf("i = %d (%d)", i, p_arr[i]);
-
-        char c = letters[(int)p_arr[i]];
         
+        rando = rand() % 6;
+        c = letters[rando];
+     
+        if (i > 0 && c == prev)
+       
         if (i > 0 && ((p_arr[i] != prev) ||            
             (p_arr[i] == L && prev != R) || 
             (p_arr[i] == R && prev != L) || 
@@ -551,3 +556,89 @@ return "";
 
     return strdup(sequence);
 }  */
+
+
+void set_cube_matrix(int *cube) {
+
+int j = 0;
+
+for (int i = 0; i < CUBE_SIZE * 2; i++) {
+
+if (i == MAPPING_TOP) j = 0;
+if (i == MAPPING_LEFT) j = 0;
+if (i == MAPPING_FRONT) j = 0;
+if (i == MAPPING_RIGHT) j = 0;
+if (i == MAPPING_BACK) j = 0;
+if (i == MAPPING_BOTTOM) j = 0;
+
+if (i == MAPPING_TOP + CUBE_SIZE) j = 0;
+if (i == MAPPING_LEFT + CUBE_SIZE) j = 0;
+if (i == MAPPING_FRONT + CUBE_SIZE) j = 0;
+if (i == MAPPING_RIGHT + CUBE_SIZE) j = 0;
+if (i == MAPPING_BACK + CUBE_SIZE) j = 0;
+if (i == MAPPING_BOTTOM + CUBE_SIZE) j = 0;
+
+
+    if (i >= MAPPING_BOTTOM + CUBE_SIZE) {
+        cube[i] = j + MAPPING_BOTTOM;
+        //printf("(B-B%d)", j + MAPPING_BOTTOM);
+        j++;
+    }
+
+    else if (i >= MAPPING_BACK + CUBE_SIZE) {
+        cube[i] = j + MAPPING_BACK;
+        j++;
+    }
+    else if (i >= MAPPING_RIGHT + CUBE_SIZE) {
+        cube[i] = j + MAPPING_RIGHT;
+        j++;
+    }
+    else if (i >= MAPPING_FRONT + CUBE_SIZE) {
+        cube[i] = j + MAPPING_FRONT;
+        j++;
+    }
+    else if (i >= MAPPING_LEFT + CUBE_SIZE) {
+        cube[i] = j + MAPPING_LEFT;
+        j++;
+    }
+    else if (i >= MAPPING_TOP + CUBE_SIZE) {
+        cube[i] = j + MAPPING_TOP;
+        j++;
+    }
+
+
+
+    else if (i >= MAPPING_BOTTOM) {
+        cube[i] = j + MAPPING_BOTTOM;
+        j++;
+    }
+
+    else if (i >= MAPPING_BACK) {
+        cube[i] = j + MAPPING_BACK;
+        j++;
+    }
+    else if (i >= MAPPING_RIGHT) {
+        cube[i] = j + MAPPING_RIGHT;
+        j++;
+    }
+    else if (i >= MAPPING_FRONT) {
+        cube[i] = j + MAPPING_FRONT;
+        j++;
+    }
+    else if (i >= MAPPING_LEFT) {
+        cube[i] = j + MAPPING_LEFT;
+        j++;
+    }
+    else if (i >= MAPPING_TOP ) {
+        cube[i] = j + MAPPING_TOP;
+        j++;
+    }
+}
+
+}
+
+void print_cube_matrix(int *cube) {
+    for (int i = 0; i < CUBE_SIZE; i++)
+    if (cube[i] != cube[i+CUBE_SIZE]) printf("cube_arr[%d]=buffer_arr[%d];\n", cube[i], cube[i + CUBE_SIZE]);
+
+}
