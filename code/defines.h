@@ -33,11 +33,16 @@
 #define Di 17
 
 void drawCube(int *cube);
+void drawCubeX(int *cube);
 void resetCube(int *cube);
 void set_cube_matrix(int *cube);
-void print_cube_matrix(int *cube);
+void print_cube_matrix(int *cube, int *cube_saved);
 void rotateCube(const char *scramble, int *cube_arr);
 void rotateSide(int direction, int *cube_arr);
+void rotateCubeTemp(const char *scramble, int *cube_arr);
+void rotateSideTemp(int direction, int *cube_arr);
 char* generateScramble();
 char* generateBetterScramble(); 
 char *generateBetterAIScramble();
+void print_cube(int *cube);
+void test_cube();

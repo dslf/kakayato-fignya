@@ -93,14 +93,16 @@ void rotateCube(const char *scramble, int *cube_arr) {
 		switch (*scramble) {
 			case 'D':
             if (*(scramble + 1) == 39) { // D' 
-                rotateSide(D, cube_arr);
-                rotateSide(D, cube_arr);
-                rotateSide(D, cube_arr);
+                //rotateSide(Di, cube_arr);             
+                rotateSide(D, cube_arr);             
+                rotateSide(D, cube_arr);             
+                rotateSide(D, cube_arr);             
                 break;
             }
             if (*(scramble + 1) == '2') { // D2 
-                rotateSide(D, cube_arr);
-                rotateSide(D, cube_arr);
+                //rotateSide(D2, cube_arr);                
+                rotateSide(D, cube_arr);                
+                rotateSide(D, cube_arr);                 
                 break;
             }
             rotateSide(D, cube_arr);
@@ -158,7 +160,9 @@ void rotateCube(const char *scramble, int *cube_arr) {
                 break;
             }
             if (*(scramble + 1) == '2') { // L2 
-                rotateSide(L2, cube_arr);
+                //rotateSide(L2, cube_arr);
+                rotateSide(L, cube_arr);
+                rotateSide(L, cube_arr);
                 break;
             }
             rotateSide(L, cube_arr);
@@ -184,6 +188,7 @@ void rotateCube(const char *scramble, int *cube_arr) {
 		scramble++;
 	}
 }
+
 
 char* generateScramble() {
     
@@ -250,8 +255,6 @@ char *generateBetterAIScramble() {
     free(p_arr);
     return "";
 }
-
-
 
 char *generateBetterScramble() {
     int i = 0;    
@@ -373,190 +376,15 @@ char *generateBetterScramble() {
             }
         }        
 
-        /* switch (p_arr[i]) {       
-        case L:           
-            if(p_arr[i - 1] == L || p_arr[i - 1] == R) {
-               // printf("l");
-                //i++;
-                break;
-            }
-            if (rand() % 2) {
-                switch (rand() % 3)
-                {
-                case 0:
-                    printf("L2");
-                    i++;
-                    break;
-                    case 1:
-                   printf("L'");
-                   i++;
-                    break;
-                    case 3:
-                printf("L"); 
-            i++;
-            break;        
-                
-                default:
-                    printf("how defaul?");
-                    break;
-                }
-             }            
-            //printf("L"); 
-            //i++;
-            break;
-
-        case R:           
-            if(p_arr[i - 1] == R || p_arr[i - 1] == L){
-               // printf("r");
-                //i++;
-                break;
-            }            
-                        if (rand() % 2) {
-                switch (rand() % 2)
-                {
-                case 0:
-                    printf("R2");
-                    i++;
-                    break;
-                    case 1:
-                   printf("R'");
-                   i++;
-                    break;
-                
-                default:
-                    printf("how defaul? r");
-                    break;
-                }
-             } 
-            printf("R"); 
-            i++;
-            break;
-        case U:
-            if(p_arr[i - 1] == U || p_arr[i - 1] == D){
-                printf("u");
-                //i++;
-                break;
-            }            
-            printf("U"); 
-            i++;
-            break;
-        case D:
-                 if(p_arr[i - 1] == U || p_arr[i - 1] == D){
-                printf("d");
-                //i++;
-                break;
-            }            
-            printf("D"); 
-            i++;
-            break;
-        case F:
-                 if(p_arr[i - 1] == F || p_arr[i - 1] == B){
-                printf("f");
-                //i++;
-                break;
-            }            
-            printf("F"); 
-            i++;
-            break;
-        case B:
-        if(p_arr[i - 1] == F || p_arr[i - 1] == B){
-                printf("b");
-                //i++;
-                break;
-            }            
-            printf("B"); 
-            i++;
-            break;
-
-        
-        default:           
-            i++;
-            break;
-        } */
 printf(" ");
 i++;
 
-/*         if (*p_arr == R) printf("R");
-        if (*p_arr == U) printf("U");
-        if (*p_arr == D) printf("D");
-        if (*p_arr == F) printf("F");
-        if (*p_arr == B) printf("B"); */
-        
-        /* if (*p_arr == L2) printf("L2");
-        if (*p_arr == R2) printf("R2");
-        if (*p_arr == U2) printf("U2");
-        if (*p_arr == D2) printf("D2");
-        if (*p_arr == F2) printf("F2");
-        if (*p_arr == B2) printf("B2");
-
-        if (*p_arr == Li) printf("L'");
-        if (*p_arr == Ri) printf("R'");
-        if (*p_arr == Ui) printf("U'");
-        if (*p_arr == Di) printf("D'");
-        if (*p_arr == Fi) printf("F'");
-        if (*p_arr == Bi) printf("B'"); */
-       
+      
     }
     printf("\n");
 free(p_arr);
 return "";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-        // генерируем последовательность из 6 букв
-    char prev_char = '\0';
-    for (int i = 0; i < 6; i++) {
-        char c;
-        do {
-            c = letters[rand() % 10]; // генерируем случайную букву
-            if (prev_char == 'L' && c == 'I') {
-                continue;
-            }
-            if (prev_char == 'L' && c == 'R' && i == 2) {
-                continue;
-            }
-        } while (c == 'L' && i == 0); // не генерируем L в начале
-        strncat(sequence, &c, 1);
-        prev_char = c;
-    }
-
-    // генерируем 30 последовательностей по 1-2 буквы
-    for (int i = 0; i < 30; i++) {
-        int len = rand() % 2 + 1; // генерируем случайную длину последовательности
-        for (int j = 0; j < len; j++) {
-            char c;
-            do {
-                c = letters[rand() % 10]; // генерируем случайную букву
-                if (prev_char == 'L' && c == 'I') {
-                    continue;
-                }
-                if (prev_char == 'L' && c == 'R' && j == 1) {
-                    continue;
-                }
-            } while (c == 'L' && j == 0); // не генерируем L в начале
-            strncat(sequence, &c, 1);
-            prev_char = c;
-        }
-        strncat(sequence, " ", 1);
-    }
-
-    return strdup(sequence);
-}  */
-
 
 void set_cube_matrix(int *cube) {
 
@@ -637,8 +465,122 @@ if (i == MAPPING_BOTTOM + CUBE_SIZE) j = 0;
 
 }
 
-void print_cube_matrix(int *cube) {
+void print_cube_matrix(int *cube, int *cube_saved) {
+
     for (int i = 0; i < CUBE_SIZE; i++)
-    if (cube[i] != cube[i+CUBE_SIZE]) printf("cube_arr[%d]=buffer_arr[%d];\n", cube[i], cube[i + CUBE_SIZE]);
+    if (cube[i] != cube_saved[i]) printf("cube_arr[%d]=buffer_arr[%d];\n", cube_saved[i], cube[i]);
+    //printf("cube_arr[%d]=buffer_arr[%d];\n", cube_saved[i  + CUBE_SIZE], cube[i]);
+    //printf("%d=%d\n", cube_saved[i], cube[i]);
+
+}
+
+void print_cube(int *cube) {
+    printf("\n = {");
+    for (int i = 0; i < CUBE_SIZE; i++)
+    printf("%d, ", cube[i]);
+    printf("};\n");   
+}
+
+void drawCubeX(int *cube) {
+	int i, j, k = 0;
+
+    // Top (White)
+	for (j = 0; j < 9; j++) {       
+		if (k == 0) 
+			printf("\033[0m       ");
+		if (k == 3) {
+			k = 0;
+			printf("\n\033[0m       ");
+		}
+		printf("%02d ",cube[j]);
+		k++;
+	}
+	printf("\n\n");
+	k = 0;
+
+    // Middle (Orange, Green, Red, Blue) 
+	for (i = 1; i < 5; i++)         
+		for (j = 0; j < 3; j++) {
+            if (k == 3) {
+                k = 0;
+                printf("\033[0m ");
+        }
+        printf("%02d ",cube[CUBE_FACE_SIZE * i + j]);
+        //printf("%s  \033[0m", colors[cube[CUBE_FACE_SIZE * i + j]]);      
+        k++;
+    }
+	printf("\n");
+	k = 0;
+    
+	for (i = 1; i < 5; i++)
+		for (j = 3; j < 6; j++) {
+            if (k == 3) {
+                k = 0;           
+                printf("\033[0m ");
+        }
+        printf("%d ", cube[CUBE_FACE_SIZE * i + j]);
+        //printf("%s  \033[0m", colors[cube[CUBE_FACE_SIZE * i + j]]);       
+        k++;
+    }
+	printf("\n");
+	k = 0;
+    
+	for (i = 1; i < 5; i++)
+		for (j = 6; j < 9; j++) {
+            if (k == 3) {
+                k = 0;           
+                printf("\033[0m ");
+        }
+        printf("%d ", cube[CUBE_FACE_SIZE * i + j]);
+        //printf("%s  \033[0m", colors[cube[CUBE_FACE_SIZE * i + j]]);       
+        k++;
+    }
+	printf("\n");
+
+    // Bottom (Yellow)
+	for (j = 0; j < 9; j++) {
+		if (k == 0) 
+			printf("\033[0m       ");
+		if (k == 3) {
+			k = 0;			
+			printf("\n\033[0m       ");
+		}
+        printf("%d ", cube[CUBE_FACE_SIZE * 5 + j]);
+		//printf("%s  \033[0m", colors[cube[CUBE_FACE_SIZE * 5 + j]]);		
+		k++;
+	}
+	printf("\n\n");
+    for (int i = 0; i < CUBE_SIZE; i++) if (i != cube[i]) printf("%02d = %02d\n", i, cube[i]);
+    printf("\n\n");
+}
+
+void test_cube() {
+    //char scramble1[] = "302104305442211123511523230451032432545140130023554450";
+    int cube[CUBE_SIZE];
+    int scramble_1[] = {3, 0, 2, 1, 0, 4, 3, 0, 5, 4, 4, 2, 2, 1, 1, 1, 2, 3, 5, 1, 1, 5, 2, 3, 2, 3, 0, 4, 5, 1, 0, 3, 2, 4, 3, 2, 5, 4, 5, 1, 4, 0, 1, 3, 0, 0, 2, 3, 5, 5, 4, 4, 5, 0};
+    int scramble_2[] = {5, 1, 1, 5, 0, 1, 0, 4, 0, 2, 4, 2, 4, 1, 5, 5, 3, 1, 3, 1, 3, 1, 2, 3, 4, 2, 1, 4, 2, 2, 4, 3, 5, 2, 2, 3, 0, 0, 3, 2, 4, 0, 4, 3, 1, 0, 3, 5, 5, 5, 0, 4, 0, 5};
+    int scramble_3[] = {0, 2, 0, 2, 0, 1, 0, 3, 4, 4, 5, 2, 3, 1, 1, 2, 1, 5, 3, 5, 5, 2, 2, 3, 1, 0, 5, 1, 4, 1, 0, 3, 5, 3, 1, 0, 2, 0, 3, 4, 4, 4, 1, 2, 5, 2, 4, 4, 5, 5, 0, 3, 3, 4};
+    int scramble_4[] = {5, 4, 1, 4, 0, 2, 1, 3, 3, 2, 1, 2, 1, 1, 3, 3, 2, 5, 0, 0, 0, 2, 2, 4, 3, 5, 4, 2, 0, 5, 5, 3, 1, 1, 1, 1, 2, 0, 3, 5, 4, 2, 4, 4, 4, 4, 3, 5, 5, 5, 0, 0, 3, 0};
+    int scramble_5[] = {4, 0, 1, 4, 0, 4, 4, 3, 2, 3, 5, 5, 4, 1, 1, 1, 1, 5, 1, 5, 3, 4, 2, 2, 3, 3, 3, 0, 0, 5, 1, 3, 5, 5, 0, 4, 2, 3, 0, 2, 4, 3, 0, 1, 2, 4, 2, 2, 0, 5, 2, 0, 5, 1};
+
+    resetCube(cube);
+    rotateCube("D R2 B2 F2 U' F2 D L2 B2 D2 B D R2 U R U L' U' L' F2", cube);
+    if (memcmp(cube, scramble_1, sizeof(scramble_1)) == 0) printf("1st Equal\n"); else printf("1st Not equal\n");
+    
+    resetCube(cube);
+    rotateCube("B U' L2 U B U' F' D2 R B2 R' D2 B2 D2 F2 L' U2 R L2 U' L'", cube);
+    if (memcmp(cube, scramble_2, sizeof(scramble_2)) == 0) printf("2nd Equal\n"); else printf("2nd Not equal\n");
+
+    resetCube(cube);
+    rotateCube("F R F2 U R' U2 B' U' D2 B D2 F' L2 F' D2 F R2 L2 F2", cube);
+    if (memcmp(cube, scramble_3, sizeof(scramble_3)) == 0) printf("3rd Equal\n"); else printf("3rd Not equal\n");
+
+    resetCube(cube);
+    rotateCube("L2 B' R2 B D2 L2 F2 R2 B' R2 D2 B L R' F R' B2 R U' L2 U", cube);
+    if (memcmp(cube, scramble_4, sizeof(scramble_4)) == 0) printf("4th Equal\n"); else printf("4th Not equal\n");
+    
+    resetCube(cube);
+    rotateCube("R' D U' L2 U' F2 D L2 U B2 F' R F D' F L2 B' F D'", cube);
+    if (memcmp(cube, scramble_5, sizeof(scramble_5)) == 0) printf("5th Equal\n"); else printf("5th Not equal\n");
 
 }
