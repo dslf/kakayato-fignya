@@ -83,8 +83,8 @@ void drawCube(int *cube) {
 
 void resetCube(int *cube){
     int k = 0;
-	for (int i = 0; i < 6; i++)
-		for(int j = 0; j < 9; j++, k++)
+    for (int i = 0; i < 6; i++)
+        for (int j = 0; j < 9; j++, k++)
             cube[k] = i;
 }
 
@@ -93,16 +93,11 @@ void rotateCube(const char *scramble, int *cube_arr) {
 		switch (*scramble) {
 			case 'D':
             if (*(scramble + 1) == 39) { // D' 
-                //rotateSide(Di, cube_arr);             
-                rotateSide(D, cube_arr);             
-                rotateSide(D, cube_arr);             
-                rotateSide(D, cube_arr);             
+                rotateSide(Di, cube_arr);             
                 break;
             }
             if (*(scramble + 1) == '2') { // D2 
-                //rotateSide(D2, cube_arr);                
-                rotateSide(D, cube_arr);                
-                rotateSide(D, cube_arr);                 
+                rotateSide(D2, cube_arr);                
                 break;
             }
             rotateSide(D, cube_arr);
@@ -110,14 +105,15 @@ void rotateCube(const char *scramble, int *cube_arr) {
             
 			case 'F':
             if (*(scramble + 1) == 39) { // F' 
-                rotateSide(F, cube_arr);
-                rotateSide(F, cube_arr);
-                rotateSide(F, cube_arr);
+                rotateSide(Fi, cube_arr);
+                /* rotateSide(F, cube_arr);
+                rotateSide(F, cube_arr); */
                 break;
             }
             if (*(scramble + 1) == '2') { // F2 
-                rotateSide(F, cube_arr);
-                rotateSide(F, cube_arr);
+                rotateSide(F2, cube_arr);
+                /* rotateSide(F, cube_arr);
+                rotateSide(F, cube_arr); */
                 break;
             }
             rotateSide(F, cube_arr);
@@ -125,14 +121,11 @@ void rotateCube(const char *scramble, int *cube_arr) {
             
 			case 'B':
             if (*(scramble + 1) == 39) { // B' 
-                rotateSide(B, cube_arr);
-                rotateSide(B, cube_arr);
-                rotateSide(B, cube_arr);
+                rotateSide(Bi, cube_arr);
                 break;
             }
             if (*(scramble + 1) == '2') { // B2 
-                rotateSide(B, cube_arr);
-                rotateSide(B, cube_arr);
+                rotateSide(B2, cube_arr);
                 break;
             }
             rotateSide(B, cube_arr);
@@ -140,9 +133,7 @@ void rotateCube(const char *scramble, int *cube_arr) {
             
 			case 'U':
             if (*(scramble + 1) == 39) { // U' 
-                rotateSide(U, cube_arr);
-                rotateSide(U, cube_arr);
-                rotateSide(U, cube_arr);
+                rotateSide(Ui, cube_arr);
                 break;
             }
             if (*(scramble + 1) == '2') { // U2 
@@ -154,15 +145,11 @@ void rotateCube(const char *scramble, int *cube_arr) {
             
 			case 'L':
             if (*(scramble + 1) == 39) { // L' 
-                rotateSide(L, cube_arr);
-                rotateSide(L, cube_arr);
-                rotateSide(L, cube_arr);
+                rotateSide(Li, cube_arr);
                 break;
             }
             if (*(scramble + 1) == '2') { // L2 
-                //rotateSide(L2, cube_arr);
-                rotateSide(L, cube_arr);
-                rotateSide(L, cube_arr);
+                rotateSide(L2, cube_arr);
                 break;
             }
             rotateSide(L, cube_arr);
@@ -170,9 +157,7 @@ void rotateCube(const char *scramble, int *cube_arr) {
             
 			case 'R':
             if (*(scramble + 1) == 39) { // R' 
-                rotateSide(R, cube_arr);
-                rotateSide(R, cube_arr);
-                rotateSide(R, cube_arr);
+                rotateSide(Ri, cube_arr);
                 break;
             }
             if (*(scramble + 1) == '2') { // R2 
@@ -465,7 +450,12 @@ if (i == MAPPING_BOTTOM + CUBE_SIZE) j = 0;
 
 }
 
-void print_cube_matrix(int *cube, int *cube_saved) {
+void print_cube_matrix(int *cube) {
+    for (int i = 0; i < CUBE_SIZE; i++) if (i != cube[i]) printf("\tcube_arr[%2d] = buffer_arr[%2d];\n", i, cube[i]);
+    
+}
+
+void print_cube_matrix_legacy(int *cube, int *cube_saved) {
 
     for (int i = 0; i < CUBE_SIZE; i++)
     if (cube[i] != cube_saved[i]) printf("cube_arr[%d]=buffer_arr[%d];\n", cube_saved[i], cube[i]);
@@ -550,13 +540,13 @@ void drawCubeX(int *cube) {
 		k++;
 	}
 	printf("\n\n");
-    for (int i = 0; i < CUBE_SIZE; i++) if (i != cube[i]) printf("%02d = %02d\n", i, cube[i]);
-    printf("\n\n");
+/*     for (int i = 0; i < CUBE_SIZE; i++) if (i != cube[i]) printf("%02d = %02d\n", i, cube[i]);
+    printf("\n\n"); */
 }
 
 void test_cube() {
     //char scramble1[] = "302104305442211123511523230451032432545140130023554450";
-    int cube[CUBE_SIZE];
+    int cube[CUBE_SIZE * 2];
     int scramble_1[] = {3, 0, 2, 1, 0, 4, 3, 0, 5, 4, 4, 2, 2, 1, 1, 1, 2, 3, 5, 1, 1, 5, 2, 3, 2, 3, 0, 4, 5, 1, 0, 3, 2, 4, 3, 2, 5, 4, 5, 1, 4, 0, 1, 3, 0, 0, 2, 3, 5, 5, 4, 4, 5, 0};
     int scramble_2[] = {5, 1, 1, 5, 0, 1, 0, 4, 0, 2, 4, 2, 4, 1, 5, 5, 3, 1, 3, 1, 3, 1, 2, 3, 4, 2, 1, 4, 2, 2, 4, 3, 5, 2, 2, 3, 0, 0, 3, 2, 4, 0, 4, 3, 1, 0, 3, 5, 5, 5, 0, 4, 0, 5};
     int scramble_3[] = {0, 2, 0, 2, 0, 1, 0, 3, 4, 4, 5, 2, 3, 1, 1, 2, 1, 5, 3, 5, 5, 2, 2, 3, 1, 0, 5, 1, 4, 1, 0, 3, 5, 3, 1, 0, 2, 0, 3, 4, 4, 4, 1, 2, 5, 2, 4, 4, 5, 5, 0, 3, 3, 4};
@@ -582,5 +572,4 @@ void test_cube() {
     resetCube(cube);
     rotateCube("R' D U' L2 U' F2 D L2 U B2 F' R F D' F L2 B' F D'", cube);
     if (memcmp(cube, scramble_5, sizeof(scramble_5)) == 0) printf("5th Equal\n"); else printf("5th Not equal\n");
-
 }

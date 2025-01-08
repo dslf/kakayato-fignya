@@ -2,349 +2,419 @@
 #include <string.h>
 #include "defines.h"
 
-void rotateSide(int direction, int *cube_arr) {   
+void rotateSide(int direction, int* c) {
+/* 
+    c = cube
+    b = buffer 
+*/
+    int* b = c + CUBE_SIZE;
 
-    int* buffer_arr = cube_arr + CUBE_SIZE;
+    memcpy(b, c, sizeof(*c) * CUBE_SIZE);
 
-	memcpy(buffer_arr, cube_arr, sizeof(*cube_arr) * CUBE_SIZE);
+    switch (direction) {
+        case L:
+            c[0]=b[44];
+            c[3]=b[41];
+            c[6]=b[38];
+            c[9]=b[15];
+            c[10]=b[12];
+            c[11]=b[9];
+            c[12]=b[16];
+            c[14]=b[10];
+            c[15]=b[17];
+            c[16]=b[14];
+            c[17]=b[11];
+            c[18]=b[0];
+            c[21]=b[3];
+            c[24]=b[6];
+            c[38]=b[51];
+            c[41]=b[48];
+            c[44]=b[45];
+            c[45]=b[18];
+            c[48]=b[21];
+            c[51]=b[24];
+            break;
 
-	switch(direction) {
-		case L:
-			cube_arr[MAPPING_LEFT]=buffer_arr[MAPPING_LEFT+6];
-			cube_arr[MAPPING_LEFT+1]=buffer_arr[MAPPING_LEFT+3];
-			cube_arr[MAPPING_LEFT+2]=buffer_arr[MAPPING_LEFT];
+        case R:
+            c[2]=b[20];
+            c[5]=b[23];
+            c[8]=b[26];
+            c[20]=b[47];
+            c[23]=b[50];
+            c[26]=b[53];
+            c[27]=b[33];
+            c[28]=b[30];
+            c[29]=b[27];
+            c[30]=b[34];
+            c[32]=b[28];
+            c[33]=b[35];
+            c[34]=b[32];
+            c[35]=b[29];
+            c[36]=b[8];
+            c[39]=b[5];
+            c[42]=b[2];
+            c[47]=b[42];
+            c[50]=b[39];
+            c[53]=b[36];
+            break;
 
-			cube_arr[MAPPING_LEFT+3]=buffer_arr[MAPPING_LEFT+7];
-			cube_arr[MAPPING_LEFT+4]=buffer_arr[MAPPING_LEFT+4];
-			cube_arr[MAPPING_LEFT+5]=buffer_arr[MAPPING_LEFT+1];
+        case U:
+            c[0]=b[6];
+            c[1]=b[3];
+            c[2]=b[0];
+            c[3]=b[7];
+            c[5]=b[1];
+            c[6]=b[8];
+            c[7]=b[5];
+            c[8]=b[2];
+            c[9]=b[18];
+            c[10]=b[19];
+            c[11]=b[20];
+            c[18]=b[27];
+            c[19]=b[28];
+            c[20]=b[29];
+            c[27]=b[36];
+            c[28]=b[37];
+            c[29]=b[38];
+            c[36]=b[9];
+            c[37]=b[10];
+            c[38]=b[11];
+            break;
 
-			cube_arr[MAPPING_LEFT+6]=buffer_arr[MAPPING_LEFT+8];
-			cube_arr[MAPPING_LEFT+7]=buffer_arr[MAPPING_LEFT+5];
-			cube_arr[MAPPING_LEFT+8]=buffer_arr[MAPPING_LEFT+2];
-			
-			cube_arr[MAPPING_TOP]=buffer_arr[MAPPING_BACK+8];
-			cube_arr[MAPPING_TOP+3]=buffer_arr[MAPPING_BACK+5];
-			cube_arr[MAPPING_TOP+6]=buffer_arr[MAPPING_BACK+2];
-			
-			cube_arr[MAPPING_BACK+8]=buffer_arr[MAPPING_BOTTOM];
-			cube_arr[MAPPING_BACK+5]=buffer_arr[MAPPING_BOTTOM+3];
-			cube_arr[MAPPING_BACK+2]=buffer_arr[MAPPING_BOTTOM+6];
+        case F:
+            c[6]=b[17];
+            c[7]=b[14];
+            c[8]=b[11];
+            c[11]=b[45];
+            c[14]=b[46];
+            c[17]=b[47];
+            c[18]=b[24];
+            c[19]=b[21];
+            c[20]=b[18];
+            c[21]=b[25];
+            c[23]=b[19];
+            c[24]=b[26];
+            c[25]=b[23];
+            c[26]=b[20];
+            c[27]=b[6];
+            c[30]=b[7];
+            c[33]=b[8];
+            c[45]=b[33];
+            c[46]=b[30];
+            c[47]=b[27];
+            break;
 
-			cube_arr[MAPPING_BOTTOM]=buffer_arr[MAPPING_FRONT];
-			cube_arr[MAPPING_BOTTOM+3]=buffer_arr[MAPPING_FRONT+3];
-			cube_arr[MAPPING_BOTTOM+6]=buffer_arr[MAPPING_FRONT+6];
+        case B:
+            c[0]=b[29];
+            c[1]=b[32];
+            c[2]=b[35];
+            c[9]=b[2];
+            c[12]=b[1];
+            c[15]=b[0];
+            c[29]=b[53];
+            c[32]=b[52];
+            c[35]=b[51];
+            c[36]=b[42];
+            c[37]=b[39];
+            c[38]=b[36];
+            c[39]=b[43];
+            c[41]=b[37];
+            c[42]=b[44];
+            c[43]=b[41];
+            c[44]=b[38];
+            c[51]=b[9];
+            c[52]=b[12];
+            c[53]=b[15];
+            break;
 
-			cube_arr[MAPPING_FRONT]=buffer_arr[MAPPING_TOP];
-			cube_arr[MAPPING_FRONT+3]=buffer_arr[MAPPING_TOP+3];
-			cube_arr[MAPPING_FRONT+6]=buffer_arr[MAPPING_TOP+6];
-			break;
-                case Li:
-                    cube_arr[0] = buffer_arr[18];
-                    cube_arr[3] = buffer_arr[21];
-                    cube_arr[6] = buffer_arr[24];
-                    cube_arr[9] = buffer_arr[11];
-                    cube_arr[10] = buffer_arr[14];
-                    cube_arr[11] = buffer_arr[17];
-                    cube_arr[12] = buffer_arr[10];
-                    cube_arr[14] = buffer_arr[16];
-                    cube_arr[15] = buffer_arr[9];
-                    cube_arr[16] = buffer_arr[12];
-                    cube_arr[17] = buffer_arr[15];
-                    cube_arr[18] = buffer_arr[45];
-                    cube_arr[21] = buffer_arr[48];
-                    cube_arr[24] = buffer_arr[51];
-                    cube_arr[38] = buffer_arr[6];
-                    cube_arr[41] = buffer_arr[3];
-                    cube_arr[44] = buffer_arr[0];
-                    cube_arr[45] = buffer_arr[44];
-                    cube_arr[48] = buffer_arr[41];
-                    cube_arr[51] = buffer_arr[38];
-                    break;
+        case D:
+            c[15]=b[42];
+            c[16]=b[43];
+            c[17]=b[44];
+            c[24]=b[15];
+            c[25]=b[16];
+            c[26]=b[17];
+            c[33]=b[24];
+            c[34]=b[25];
+            c[35]=b[26];
+            c[42]=b[33];
+            c[43]=b[34];
+            c[44]=b[35];
+            c[45]=b[51];
+            c[46]=b[48];
+            c[47]=b[45];
+            c[48]=b[52];
+            c[50]=b[46];
+            c[51]=b[53];
+            c[52]=b[50];
+            c[53]=b[47];
+            break;
 
-                case Di:
-                    cube_arr[15] = buffer_arr[24];
-                    cube_arr[16] = buffer_arr[25];
-                    cube_arr[17] = buffer_arr[26];
-                    cube_arr[24] = buffer_arr[33];
-                    cube_arr[25] = buffer_arr[34];
-                    cube_arr[26] = buffer_arr[35];
-                    cube_arr[33] = buffer_arr[42];
-                    cube_arr[34] = buffer_arr[43];
-                    cube_arr[35] = buffer_arr[44];
-                    cube_arr[42] = buffer_arr[15];
-                    cube_arr[43] = buffer_arr[16];
-                    cube_arr[44] = buffer_arr[17];
-                    cube_arr[45] = buffer_arr[47];
-                    cube_arr[46] = buffer_arr[50];
-                    cube_arr[47] = buffer_arr[53];
-                    cube_arr[48] = buffer_arr[46];
-                    cube_arr[50] = buffer_arr[52];
-                    cube_arr[51] = buffer_arr[45];
-                    cube_arr[52] = buffer_arr[48];
-                    cube_arr[53] = buffer_arr[51];
-                    break;
+        case L2:
+            c[0]=b[45];
+            c[3]=b[48];
+            c[6]=b[51];
+            c[9]=b[17];
+            c[10]=b[16];
+            c[11]=b[15];
+            c[12]=b[14];
+            c[14]=b[12];
+            c[15]=b[11];
+            c[16]=b[10];
+            c[17]=b[9];
+            c[18]=b[44];
+            c[21]=b[41];
+            c[24]=b[38];
+            c[38]=b[24];
+            c[41]=b[21];
+            c[44]=b[18];
+            c[45]=b[0];
+            c[48]=b[3];
+            c[51]=b[6];
+            break;
 
-                case D2:
-                    cube_arr[42] = buffer_arr[33];
-                    cube_arr[43] = buffer_arr[34];
-                    cube_arr[44] = buffer_arr[35];
-                    cube_arr[15] = buffer_arr[42];
-                    cube_arr[16] = buffer_arr[43];
-                    cube_arr[17] = buffer_arr[44];
-                    cube_arr[24] = buffer_arr[15];
-                    cube_arr[25] = buffer_arr[16];
-                    cube_arr[26] = buffer_arr[17];
-                    cube_arr[33] = buffer_arr[24];
-                    cube_arr[34] = buffer_arr[25];
-                    cube_arr[35] = buffer_arr[26];
-                    cube_arr[51] = buffer_arr[53];
-                    cube_arr[48] = buffer_arr[52];
-                    cube_arr[45] = buffer_arr[51];
-                    cube_arr[52] = buffer_arr[50];
-                    cube_arr[46] = buffer_arr[48];
-                    cube_arr[53] = buffer_arr[47];
-                    cube_arr[50] = buffer_arr[46];
-                    cube_arr[47] = buffer_arr[45];
-                    break;
+        case R2:
+            c[2]=b[47];
+            c[5]=b[50];
+            c[8]=b[53];
+            c[20]=b[42];
+            c[23]=b[39];
+            c[26]=b[36];
+            c[27]=b[35];
+            c[28]=b[34];
+            c[29]=b[33];
+            c[30]=b[32];
+            c[32]=b[30];
+            c[33]=b[29];
+            c[34]=b[28];
+            c[35]=b[27];
+            c[36]=b[26];
+            c[39]=b[23];
+            c[42]=b[20];
+            c[47]=b[2];
+            c[50]=b[5];
+            c[53]=b[8];
+            break;
 
-                case R: 
-			cube_arr[MAPPING_TOP+2]=buffer_arr[MAPPING_FRONT+2];
-			cube_arr[MAPPING_TOP+5]=buffer_arr[MAPPING_FRONT+5];
-			cube_arr[MAPPING_TOP+8]=buffer_arr[MAPPING_FRONT+8];
-
-			cube_arr[MAPPING_FRONT+2]=buffer_arr[MAPPING_BOTTOM+2];
-			cube_arr[MAPPING_FRONT+5]=buffer_arr[MAPPING_BOTTOM+5];
-			cube_arr[MAPPING_FRONT+8]=buffer_arr[MAPPING_BOTTOM+8];
-
-			cube_arr[MAPPING_BOTTOM+2]=buffer_arr[MAPPING_BACK+6];
-			cube_arr[MAPPING_BOTTOM+5]=buffer_arr[MAPPING_BACK+3];
-			cube_arr[MAPPING_BOTTOM+8]=buffer_arr[MAPPING_BACK];
-
-			cube_arr[MAPPING_BACK+6]=buffer_arr[MAPPING_TOP+2];
-			cube_arr[MAPPING_BACK+3]=buffer_arr[MAPPING_TOP+5];
-			cube_arr[MAPPING_BACK]=buffer_arr[MAPPING_TOP+8];
-
-			cube_arr[MAPPING_RIGHT]=buffer_arr[MAPPING_RIGHT+6];
-			cube_arr[MAPPING_RIGHT+1]=buffer_arr[MAPPING_RIGHT+3];
-			cube_arr[MAPPING_RIGHT+2]=buffer_arr[MAPPING_RIGHT];
-
-			cube_arr[MAPPING_RIGHT+3]=buffer_arr[MAPPING_RIGHT+7];
-			cube_arr[MAPPING_RIGHT+4]=buffer_arr[MAPPING_RIGHT+4];
-			cube_arr[MAPPING_RIGHT+5]=buffer_arr[MAPPING_RIGHT+1];
-
-			cube_arr[MAPPING_RIGHT+6]=buffer_arr[MAPPING_RIGHT+8];
-			cube_arr[MAPPING_RIGHT+7]=buffer_arr[MAPPING_RIGHT+5];
-			cube_arr[MAPPING_RIGHT+8]=buffer_arr[MAPPING_RIGHT+2];
-			break;
-
-		case U:   
-			cube_arr[MAPPING_TOP]=buffer_arr[MAPPING_TOP+6];
-			cube_arr[MAPPING_TOP+1]=buffer_arr[MAPPING_TOP+3];
-			cube_arr[MAPPING_TOP+2]=buffer_arr[MAPPING_TOP];
-
-			cube_arr[MAPPING_TOP+3]=buffer_arr[MAPPING_TOP+7];
-			cube_arr[MAPPING_TOP+4]=buffer_arr[MAPPING_TOP+4];
-			cube_arr[MAPPING_TOP+5]=buffer_arr[MAPPING_TOP+1];
-
-			cube_arr[MAPPING_TOP+6]=buffer_arr[MAPPING_TOP+8];
-			cube_arr[MAPPING_TOP+7]=buffer_arr[MAPPING_TOP+5];
-			cube_arr[MAPPING_TOP+8]=buffer_arr[MAPPING_TOP+2];
-
-			cube_arr[MAPPING_FRONT]=buffer_arr[MAPPING_RIGHT];
-			cube_arr[MAPPING_FRONT+1]=buffer_arr[MAPPING_RIGHT+1];
-			cube_arr[MAPPING_FRONT+2]=buffer_arr[MAPPING_RIGHT+2];
-
-			cube_arr[MAPPING_RIGHT]=buffer_arr[MAPPING_BACK];
-			cube_arr[MAPPING_RIGHT+1]=buffer_arr[MAPPING_BACK+1];
-			cube_arr[MAPPING_RIGHT+2]=buffer_arr[MAPPING_BACK+2];
-
-			cube_arr[MAPPING_BACK]=buffer_arr[MAPPING_LEFT];
-			cube_arr[MAPPING_BACK+1]=buffer_arr[MAPPING_LEFT+1];
-			cube_arr[MAPPING_BACK+2]=buffer_arr[MAPPING_LEFT+2];
-
-			cube_arr[MAPPING_LEFT]=buffer_arr[MAPPING_FRONT];
-			cube_arr[MAPPING_LEFT+1]=buffer_arr[MAPPING_FRONT+1];
-			cube_arr[MAPPING_LEFT+2]=buffer_arr[MAPPING_FRONT+2];
-			break;
-
-		case F:
-			cube_arr[MAPPING_FRONT]=buffer_arr[MAPPING_FRONT+6];
-			cube_arr[MAPPING_FRONT+1]=buffer_arr[MAPPING_FRONT+3];
-			cube_arr[MAPPING_FRONT+2]=buffer_arr[MAPPING_FRONT];
-
-			cube_arr[MAPPING_FRONT+3]=buffer_arr[MAPPING_FRONT+7];
-			cube_arr[MAPPING_FRONT+4]=buffer_arr[MAPPING_FRONT+4];
-			cube_arr[MAPPING_FRONT+5]=buffer_arr[MAPPING_FRONT+1];
-
-			cube_arr[MAPPING_FRONT+6]=buffer_arr[MAPPING_FRONT+8];
-			cube_arr[MAPPING_FRONT+7]=buffer_arr[MAPPING_FRONT+5];
-			cube_arr[MAPPING_FRONT+8]=buffer_arr[MAPPING_FRONT+2];
-
-			cube_arr[MAPPING_TOP+6]=buffer_arr[MAPPING_LEFT+8];
-			cube_arr[MAPPING_TOP+7]=buffer_arr[MAPPING_LEFT+5];
-			cube_arr[MAPPING_TOP+8]=buffer_arr[MAPPING_LEFT+2];
-
-			cube_arr[MAPPING_LEFT+8]=buffer_arr[MAPPING_BOTTOM+2];
-			cube_arr[MAPPING_LEFT+5]=buffer_arr[MAPPING_BOTTOM+1];
-			cube_arr[MAPPING_LEFT+2]=buffer_arr[MAPPING_BOTTOM];
-
-			cube_arr[MAPPING_BOTTOM+2]=buffer_arr[MAPPING_RIGHT];
-			cube_arr[MAPPING_BOTTOM+1]=buffer_arr[MAPPING_RIGHT+3];
-			cube_arr[MAPPING_BOTTOM]=buffer_arr[MAPPING_RIGHT+6];
-
-			cube_arr[MAPPING_RIGHT]=buffer_arr[MAPPING_TOP+6];
-			cube_arr[MAPPING_RIGHT+3]=buffer_arr[MAPPING_TOP+7];
-			cube_arr[MAPPING_RIGHT+6]=buffer_arr[MAPPING_TOP+8];
-			break;
-
-		case B:
-			cube_arr[MAPPING_BACK]=buffer_arr[MAPPING_BACK+6];
-			cube_arr[MAPPING_BACK+1]=buffer_arr[MAPPING_BACK+3];
-			cube_arr[MAPPING_BACK+2]=buffer_arr[MAPPING_BACK];
-
-			cube_arr[MAPPING_BACK+3]=buffer_arr[MAPPING_BACK+7];
-			cube_arr[MAPPING_BACK+4]=buffer_arr[MAPPING_BACK+4];
-			cube_arr[MAPPING_BACK+5]=buffer_arr[MAPPING_BACK+1];
-
-			cube_arr[MAPPING_BACK+6]=buffer_arr[MAPPING_BACK+8];
-			cube_arr[MAPPING_BACK+7]=buffer_arr[MAPPING_BACK+5];
-			cube_arr[MAPPING_BACK+8]=buffer_arr[MAPPING_BACK+2];
-
-			cube_arr[MAPPING_TOP]=buffer_arr[MAPPING_RIGHT+2];
-			cube_arr[MAPPING_TOP+1]=buffer_arr[MAPPING_RIGHT+5];
-			cube_arr[MAPPING_TOP+2]=buffer_arr[MAPPING_RIGHT+8];
-
-			cube_arr[MAPPING_RIGHT+2]=buffer_arr[MAPPING_BOTTOM+8];
-			cube_arr[MAPPING_RIGHT+5]=buffer_arr[MAPPING_BOTTOM+7];
-			cube_arr[MAPPING_RIGHT+8]=buffer_arr[MAPPING_BOTTOM+6];
-
-			cube_arr[MAPPING_BOTTOM+8]=buffer_arr[MAPPING_LEFT+6];
-			cube_arr[MAPPING_BOTTOM+7]=buffer_arr[MAPPING_LEFT+3];
-			cube_arr[MAPPING_BOTTOM+6]=buffer_arr[MAPPING_LEFT];
-
-			cube_arr[MAPPING_LEFT+6]=buffer_arr[MAPPING_TOP];
-			cube_arr[MAPPING_LEFT+3]=buffer_arr[MAPPING_TOP+1];
-			cube_arr[MAPPING_LEFT]=buffer_arr[MAPPING_TOP+2];
-			break;
-
-		case D:   
-			cube_arr[MAPPING_BOTTOM]=buffer_arr[MAPPING_BOTTOM+6];
-			cube_arr[MAPPING_BOTTOM+1]=buffer_arr[MAPPING_BOTTOM+3];
-			cube_arr[MAPPING_BOTTOM+2]=buffer_arr[MAPPING_BOTTOM];
-
-			cube_arr[MAPPING_BOTTOM+3]=buffer_arr[MAPPING_BOTTOM+7];
-			cube_arr[MAPPING_BOTTOM+4]=buffer_arr[MAPPING_BOTTOM+4];
-			cube_arr[MAPPING_BOTTOM+5]=buffer_arr[MAPPING_BOTTOM+1];
-
-			cube_arr[MAPPING_BOTTOM+6]=buffer_arr[MAPPING_BOTTOM+8];
-			cube_arr[MAPPING_BOTTOM+7]=buffer_arr[MAPPING_BOTTOM+5];
-			cube_arr[MAPPING_BOTTOM+8]=buffer_arr[MAPPING_BOTTOM+2];
-
-			cube_arr[MAPPING_FRONT+6]=buffer_arr[MAPPING_LEFT+6];
-			cube_arr[MAPPING_FRONT+7]=buffer_arr[MAPPING_LEFT+7];
-			cube_arr[MAPPING_FRONT+8]=buffer_arr[MAPPING_LEFT+8];
-
-			cube_arr[MAPPING_LEFT+6]=buffer_arr[MAPPING_BACK+6];
-			cube_arr[MAPPING_LEFT+7]=buffer_arr[MAPPING_BACK+7];
-			cube_arr[MAPPING_LEFT+8]=buffer_arr[MAPPING_BACK+8];
-
-			cube_arr[MAPPING_BACK+6]=buffer_arr[MAPPING_RIGHT+6];
-			cube_arr[MAPPING_BACK+7]=buffer_arr[MAPPING_RIGHT+7];
-			cube_arr[MAPPING_BACK+8]=buffer_arr[MAPPING_RIGHT+8];
-
-			cube_arr[MAPPING_RIGHT+6]=buffer_arr[MAPPING_FRONT+6];
-			cube_arr[MAPPING_RIGHT+7]=buffer_arr[MAPPING_FRONT+7];
-			cube_arr[MAPPING_RIGHT+8]=buffer_arr[MAPPING_FRONT+8];
-			break;
-
-		case L2:
-			cube_arr[MAPPING_LEFT]=buffer_arr[MAPPING_LEFT+8];
-			cube_arr[MAPPING_LEFT+1]=buffer_arr[MAPPING_LEFT+7];
-			cube_arr[MAPPING_LEFT+2]=buffer_arr[MAPPING_LEFT+6];
-
-			cube_arr[MAPPING_LEFT+3]=buffer_arr[MAPPING_LEFT+5];
-			cube_arr[MAPPING_LEFT+4]=buffer_arr[MAPPING_LEFT+4];
-			cube_arr[MAPPING_LEFT+5]=buffer_arr[MAPPING_LEFT+3];
-
-			cube_arr[MAPPING_LEFT+6]=buffer_arr[MAPPING_LEFT+2];
-			cube_arr[MAPPING_LEFT+7]=buffer_arr[MAPPING_LEFT+1];
-			cube_arr[MAPPING_LEFT+8]=buffer_arr[MAPPING_LEFT+0];
-			
-			cube_arr[MAPPING_TOP]=buffer_arr[MAPPING_BOTTOM];
-			cube_arr[MAPPING_TOP+3]=buffer_arr[MAPPING_BOTTOM+3];
-			cube_arr[MAPPING_TOP+6]=buffer_arr[MAPPING_BOTTOM+6];
-			
-			cube_arr[MAPPING_BACK+2]=buffer_arr[MAPPING_FRONT+6];
-			cube_arr[MAPPING_BACK+5]=buffer_arr[MAPPING_FRONT+3];
-			cube_arr[MAPPING_BACK+8]=buffer_arr[MAPPING_FRONT];
-
-			cube_arr[MAPPING_BOTTOM]=buffer_arr[MAPPING_TOP];
-			cube_arr[MAPPING_BOTTOM+3]=buffer_arr[MAPPING_TOP+3];
-			cube_arr[MAPPING_BOTTOM+6]=buffer_arr[MAPPING_TOP+6];
-
-			cube_arr[MAPPING_FRONT]=buffer_arr[MAPPING_BACK+8];
-			cube_arr[MAPPING_FRONT+3]=buffer_arr[MAPPING_BACK+5];
-			cube_arr[MAPPING_FRONT+6]=buffer_arr[MAPPING_BACK+2];
-			break;
-
-		case R2:
-			cube_arr[MAPPING_TOP+2]=buffer_arr[MAPPING_BOTTOM+2];
-			cube_arr[MAPPING_TOP+5]=buffer_arr[MAPPING_BOTTOM+5];
-			cube_arr[MAPPING_TOP+8]=buffer_arr[MAPPING_BOTTOM+8];
-
-			cube_arr[MAPPING_FRONT+2]=buffer_arr[MAPPING_BACK+6];
-			cube_arr[MAPPING_FRONT+5]=buffer_arr[MAPPING_BACK+3];
-			cube_arr[MAPPING_FRONT+8]=buffer_arr[MAPPING_BACK];
-
-			cube_arr[MAPPING_BOTTOM+2]=buffer_arr[MAPPING_TOP+2];
-			cube_arr[MAPPING_BOTTOM+5]=buffer_arr[MAPPING_TOP+5];
-			cube_arr[MAPPING_BOTTOM+8]=buffer_arr[MAPPING_TOP+8];
-
-			cube_arr[MAPPING_BACK]=buffer_arr[MAPPING_FRONT+8];
-			cube_arr[MAPPING_BACK+3]=buffer_arr[MAPPING_FRONT+5];
-			cube_arr[MAPPING_BACK+6]=buffer_arr[MAPPING_FRONT+2];
-
-			cube_arr[MAPPING_RIGHT]=buffer_arr[MAPPING_RIGHT+8];
-			cube_arr[MAPPING_RIGHT+1]=buffer_arr[MAPPING_RIGHT+7];
-			cube_arr[MAPPING_RIGHT+2]=buffer_arr[MAPPING_RIGHT+6];
-
-			cube_arr[MAPPING_RIGHT+3]=buffer_arr[MAPPING_RIGHT+5];
-			cube_arr[MAPPING_RIGHT+4]=buffer_arr[MAPPING_RIGHT+4];
-			cube_arr[MAPPING_RIGHT+5]=buffer_arr[MAPPING_RIGHT+3];
-
-			cube_arr[MAPPING_RIGHT+6]=buffer_arr[MAPPING_RIGHT+2];
-			cube_arr[MAPPING_RIGHT+7]=buffer_arr[MAPPING_RIGHT+1];
-			cube_arr[MAPPING_RIGHT+8]=buffer_arr[MAPPING_RIGHT];
-			break;
-		
-		case U2:   
-			cube_arr[MAPPING_TOP]=buffer_arr[MAPPING_TOP+8];
-			cube_arr[MAPPING_TOP+1]=buffer_arr[MAPPING_TOP+7];
-			cube_arr[MAPPING_TOP+2]=buffer_arr[MAPPING_TOP+6];
-
-			cube_arr[MAPPING_TOP+3]=buffer_arr[MAPPING_TOP+5];
-			cube_arr[MAPPING_TOP+4]=buffer_arr[MAPPING_TOP+4];
-			cube_arr[MAPPING_TOP+5]=buffer_arr[MAPPING_TOP+3];
-
-			cube_arr[MAPPING_TOP+6]=buffer_arr[MAPPING_TOP+2];
-			cube_arr[MAPPING_TOP+7]=buffer_arr[MAPPING_TOP+1];
-			cube_arr[MAPPING_TOP+8]=buffer_arr[MAPPING_TOP];
-
-			cube_arr[MAPPING_FRONT]=buffer_arr[MAPPING_BACK];
-			cube_arr[MAPPING_FRONT+1]=buffer_arr[MAPPING_BACK+1];
-			cube_arr[MAPPING_FRONT+2]=buffer_arr[MAPPING_BACK+2];
-
-			cube_arr[MAPPING_RIGHT]=buffer_arr[MAPPING_LEFT];
-			cube_arr[MAPPING_RIGHT+1]=buffer_arr[MAPPING_LEFT+1];
-			cube_arr[MAPPING_RIGHT+2]=buffer_arr[MAPPING_LEFT+2];
-
-			cube_arr[MAPPING_BACK]=buffer_arr[MAPPING_FRONT];
-			cube_arr[MAPPING_BACK+1]=buffer_arr[MAPPING_FRONT+1];
-			cube_arr[MAPPING_BACK+2]=buffer_arr[MAPPING_FRONT+2];
-
-			cube_arr[MAPPING_LEFT]=buffer_arr[MAPPING_RIGHT];
-			cube_arr[MAPPING_LEFT+1]=buffer_arr[MAPPING_RIGHT+1];
-			cube_arr[MAPPING_LEFT+2]=buffer_arr[MAPPING_RIGHT+2];
-			break;
-	}
+        case U2:
+            c[0]=b[8];
+            c[1]=b[7];
+            c[2]=b[6];
+            c[3]=b[5];
+            c[5]=b[3];
+            c[6]=b[2];
+            c[7]=b[1];
+            c[8]=b[0];
+            c[9]=b[27];
+            c[10]=b[28];
+            c[11]=b[29];
+            c[18]=b[36];
+            c[19]=b[37];
+            c[20]=b[38];
+            c[27]=b[9];
+            c[28]=b[10];
+            c[29]=b[11];
+            c[36]=b[18];
+            c[37]=b[19];
+            c[38]=b[20];
+            break;
+        case D2:
+            c[15]=b[33];
+            c[16]=b[34];
+            c[17]=b[35];
+            c[24]=b[42];
+            c[25]=b[43];
+            c[26]=b[44];
+            c[33]=b[15];
+            c[34]=b[16];
+            c[35]=b[17];
+            c[42]=b[24];
+            c[43]=b[25];
+            c[44]=b[26];
+            c[45]=b[53];
+            c[46]=b[52];
+            c[47]=b[51];
+            c[48]=b[50];
+            c[50]=b[48];
+            c[51]=b[47];
+            c[52]=b[46];
+            c[53]=b[45];
+            break;
+        case F2:
+            c[6]=b[47];
+            c[7]=b[46];
+            c[8]=b[45];
+            c[11]=b[33];
+            c[14]=b[30];
+            c[17]=b[27];
+            c[18]=b[26];
+            c[19]=b[25];
+            c[20]=b[24];
+            c[21]=b[23];
+            c[23]=b[21];
+            c[24]=b[20];
+            c[25]=b[19];
+            c[26]=b[18];
+            c[27]=b[17];
+            c[30]=b[14];
+            c[33]=b[11];
+            c[45]=b[8];
+            c[46]=b[7];
+            c[47]=b[6];
+            break;
+        case B2:
+            c[0]=b[53];
+            c[1]=b[52];
+            c[2]=b[51];
+            c[9]=b[35];
+            c[12]=b[32];
+            c[15]=b[29];
+            c[29]=b[15];
+            c[32]=b[12];
+            c[35]=b[9];
+            c[36]=b[44];
+            c[37]=b[43];
+            c[38]=b[42];
+            c[39]=b[41];
+            c[41]=b[39];
+            c[42]=b[38];
+            c[43]=b[37];
+            c[44]=b[36];
+            c[51]=b[2];
+            c[52]=b[1];
+            c[53]=b[0];
+            break;
+        case Di:
+            c[15]=b[24];
+            c[16]=b[25];
+            c[17]=b[26];
+            c[24]=b[33];
+            c[25]=b[34];
+            c[26]=b[35];
+            c[33]=b[42];
+            c[34]=b[43];
+            c[35]=b[44];
+            c[42]=b[15];
+            c[43]=b[16];
+            c[44]=b[17];
+            c[45]=b[47];
+            c[46]=b[50];
+            c[47]=b[53];
+            c[48]=b[46];
+            c[50]=b[52];
+            c[51]=b[45];
+            c[52]=b[48];
+            c[53]=b[51];
+            break;
+        case Fi:
+            c[6]=b[27];
+            c[7]=b[30];
+            c[8]=b[33];
+            c[11]=b[8];
+            c[14]=b[7];
+            c[17]=b[6];
+            c[18]=b[20];
+            c[19]=b[23];
+            c[20]=b[26];
+            c[21]=b[19];
+            c[23]=b[25];
+            c[24]=b[18];
+            c[25]=b[21];
+            c[26]=b[24];
+            c[27]=b[47];
+            c[30]=b[46];
+            c[33]=b[45];
+            c[45]=b[11];
+            c[46]=b[14];
+            c[47]=b[17];
+            break;
+        case Bi:
+            c[0]=b[15];
+            c[1]=b[12];
+            c[2]=b[9];
+            c[9]=b[51];
+            c[12]=b[52];
+            c[15]=b[53];
+            c[29]=b[0];
+            c[32]=b[1];
+            c[35]=b[2];
+            c[36]=b[38];
+            c[37]=b[41];
+            c[38]=b[44];
+            c[39]=b[37];
+            c[41]=b[43];
+            c[42]=b[36];
+            c[43]=b[39];
+            c[44]=b[42];
+            c[51]=b[35];
+            c[52]=b[32];
+            c[53]=b[29];
+            break;
+        case Ui:
+            c[0]=b[2];
+            c[1]=b[5];
+            c[2]=b[8];
+            c[3]=b[1];
+            c[5]=b[7];
+            c[6]=b[0];
+            c[7]=b[3];
+            c[8]=b[6];
+            c[9]=b[36];
+            c[10]=b[37];
+            c[11]=b[38];
+            c[18]=b[9];
+            c[19]=b[10];
+            c[20]=b[11];
+            c[27]=b[18];
+            c[28]=b[19];
+            c[29]=b[20];
+            c[36]=b[27];
+            c[37]=b[28];
+            c[38]=b[29];
+            break;
+        case Li:
+            c[0]=b[18];
+            c[3]=b[21];
+            c[6]=b[24];
+            c[9]=b[11];
+            c[10]=b[14];
+            c[11]=b[17];
+            c[12]=b[10];
+            c[14]=b[16];
+            c[15]=b[9];
+            c[16]=b[12];
+            c[17]=b[15];
+            c[18]=b[45];
+            c[21]=b[48];
+            c[24]=b[51];
+            c[38]=b[6];
+            c[41]=b[3];
+            c[44]=b[0];
+            c[45]=b[44];
+            c[48]=b[41];
+            c[51]=b[38];
+            break;
+        case Ri:
+            c[2]=b[42];
+            c[5]=b[39];
+            c[8]=b[36];
+            c[20]=b[2];
+            c[23]=b[5];
+            c[26]=b[8];
+            c[27]=b[29];
+            c[28]=b[32];
+            c[29]=b[35];
+            c[30]=b[28];
+            c[32]=b[34];
+            c[33]=b[27];
+            c[34]=b[30];
+            c[35]=b[33];
+            c[36]=b[53];
+            c[39]=b[50];
+            c[42]=b[47];
+            c[47]=b[20];
+            c[50]=b[23];
+            c[53]=b[26];
+            break;
+    }
 }
