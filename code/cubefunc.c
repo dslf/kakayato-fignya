@@ -459,7 +459,7 @@ void drawCubeX(int *cube) {
 
 void test_cube() {
     int cube[CUBE_SIZE * 2];
-    int scrambles[][54] = {
+    int reference[][54] = {
         {4, 5, 4, 2, 0, 2, 3, 1, 1, 3, 3, 2, 4, 1, 4, 0, 0, 5, 5, 2, 2, 1, 2, 0, 3, 5, 4, 0, 5, 1, 2, 3, 5, 1, 4, 5, 0, 3, 0, 4, 4, 3, 1, 0, 2, 4, 1, 5, 3, 5, 0, 3, 1, 2},
         {3, 0, 2, 1, 0, 4, 3, 0, 5, 4, 4, 2, 2, 1, 1, 1, 2, 3, 5, 1, 1, 5, 2, 3, 2, 3, 0, 4, 5, 1, 0, 3, 2, 4, 3, 2, 5, 4, 5, 1, 4, 0, 1, 3, 0, 0, 2, 3, 5, 5, 4, 4, 5, 0},
         {5, 1, 1, 5, 0, 1, 0, 4, 0, 2, 4, 2, 4, 1, 5, 5, 3, 1, 3, 1, 3, 1, 2, 3, 4, 2, 1, 4, 2, 2, 4, 3, 5, 2, 2, 3, 0, 0, 3, 2, 4, 0, 4, 3, 1, 0, 3, 5, 5, 5, 0, 4, 0, 5},
@@ -472,7 +472,7 @@ void test_cube() {
         {3, 2, 3, 0, 0, 3, 4, 1, 3, 5, 2, 3, 0, 1, 1, 4, 4, 1, 5, 4, 0, 5, 2, 0, 4, 4, 2, 2, 0, 4, 4, 3, 2, 1, 3, 1, 0, 5, 2, 1, 4, 1, 2, 3, 5, 0, 5, 0, 3, 5, 2, 1, 5, 5},
     };
 
-    char moves[][200] = {
+    char scrambles[][72] = {
         "U B L D' R2 F2 D2 L2 B2 D L2 R' B R D2 L2 U2 L\0",
         "D R2 B2 F2 U' F2 D L2 B2 D2 B D R2 U R U L' U' L' F2\0",
         "B U' L2 U B U' F' D2 R B2 R' D2 B2 D2 F2 L' U2 R L2 U' L'\0",
@@ -487,7 +487,8 @@ void test_cube() {
 
     for (int i = 0; i < 10; i++) {
         resetCube(cube);        
-        rotateCube(moves[i], cube);
-        printf("Test %d: %s.\n", i, memcmp(cube, scrambles[i], sizeof(scrambles[i])) == 0 ? "passed" : "NOT passed");
+        rotateCube(scrambles[i], cube);
+        //drawCube(cube);        
+        printf("\033[0m%d. %s Scramble: (%s)\n", i, memcmp(cube, reference[i], sizeof(reference[i])) == 0 ? "\033[01;38;05;46mpassed\033[0m" : "\033[01;38;05;196mfailed\033[0m", scrambles[i]);
     }
 }
