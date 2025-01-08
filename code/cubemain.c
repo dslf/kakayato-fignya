@@ -34,14 +34,14 @@ int main(){
     //print_cube_matrix(cube);
     //print_cube(cube);  // print cube matrix as int array
 
-    resetCube(cube);
+   // resetCube(cube);
     // seems good, tested by cstimer.net https://i.imgur.com/57BCevm.png
     //rotateCube("D R2 B2 F2 U' F2 D L2 B2 D2 B D R2 U R U L' U' L' F2", cube);  
 
     //rotateCube("UR2FBRB2RU2LB2RU'D'R2FR'LB2U2F2", cube);
-    rotateCube("F2 D R2 D' B2 L2 B2 U2 L2 D R D2 F R2 D R' B' L B2 R'", cube);
-    drawCube(cube);
-    print_cube(cube);
+    //rotateCube("F2 D R2 D' B2 L2 B2 U2 L2 D R D2 F R2 D R' B' L B2 R'", cube);
+   // drawCube(cube);
+    //print_cube(cube);
 
     test_cube(); // this is test 
 
