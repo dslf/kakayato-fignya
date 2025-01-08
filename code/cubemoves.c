@@ -2,11 +2,12 @@
 #include <string.h>
 #include "defines.h"
 
-void rotateSide(int direction, int* c) {
 /* 
     c = cube
     b = buffer 
 */
+
+void rotateSide(int direction, int *c) {
     int* b = c + CUBE_SIZE;
 
     memcpy(b, c, sizeof(*c) * CUBE_SIZE);

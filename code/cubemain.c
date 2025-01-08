@@ -22,8 +22,9 @@ int main(){
 	//memcpy(buffer_arr, cube_arr, sizeof(*cube_arr) * CUBE_SIZE);
 
     //resetCube(cube);
-   // set_cube_matrix(cube);
-/*     drawCubeX(cube);
+    //set_cube_matrix(cube);
+    // drawCubeX(cube);
+     /*
     memcpy(cube_saved, cube, sizeof(*cube) * (CUBE_SIZE * 2)); */
 
    // print_cube_matrix(cube);
@@ -37,9 +38,10 @@ int main(){
     // seems good, tested by cstimer.net https://i.imgur.com/57BCevm.png
     //rotateCube("D R2 B2 F2 U' F2 D L2 B2 D2 B D R2 U R U L' U' L' F2", cube);  
 
-    rotateCube("UR2FBRB2RU2LB2RU'D'R2FR'LB2U2F2", cube);
+    //rotateCube("UR2FBRB2RU2LB2RU'D'R2FR'LB2U2F2", cube);
+    rotateCube("F2 D R2 D' B2 L2 B2 U2 L2 D R D2 F R2 D R' B' L B2 R'", cube);
     drawCube(cube);
-    //print_cube(cube);
+    print_cube(cube);
 
     test_cube(); // this is test 
 

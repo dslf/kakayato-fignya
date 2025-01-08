@@ -44,6 +44,6 @@ void rotateCubeTemp(const char *scramble, int *cube_arr);
 void rotateSideTemp(int direction, int *cube_arr);
 char* generateScramble();
 char* generateBetterScramble(); 
-char *generateBetterAIScramble();
+char* generateBetterAIScramble();
 void print_cube(int *cube);
 void test_cube();
