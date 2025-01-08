@@ -373,95 +373,13 @@ return "";
 
 void set_cube_matrix(int *cube) {
 
-int j = 0;
-
-for (int i = 0; i < CUBE_SIZE * 2; i++) {
-
-if (i == MAPPING_TOP) j = 0;
-if (i == MAPPING_LEFT) j = 0;
-if (i == MAPPING_FRONT) j = 0;
-if (i == MAPPING_RIGHT) j = 0;
-if (i == MAPPING_BACK) j = 0;
-if (i == MAPPING_BOTTOM) j = 0;
-
-if (i == MAPPING_TOP + CUBE_SIZE) j = 0;
-if (i == MAPPING_LEFT + CUBE_SIZE) j = 0;
-if (i == MAPPING_FRONT + CUBE_SIZE) j = 0;
-if (i == MAPPING_RIGHT + CUBE_SIZE) j = 0;
-if (i == MAPPING_BACK + CUBE_SIZE) j = 0;
-if (i == MAPPING_BOTTOM + CUBE_SIZE) j = 0;
-
-
-    if (i >= MAPPING_BOTTOM + CUBE_SIZE) {
-        cube[i] = j + MAPPING_BOTTOM;
-        //printf("(B-B%d)", j + MAPPING_BOTTOM);
-        j++;
-    }
-
-    else if (i >= MAPPING_BACK + CUBE_SIZE) {
-        cube[i] = j + MAPPING_BACK;
-        j++;
-    }
-    else if (i >= MAPPING_RIGHT + CUBE_SIZE) {
-        cube[i] = j + MAPPING_RIGHT;
-        j++;
-    }
-    else if (i >= MAPPING_FRONT + CUBE_SIZE) {
-        cube[i] = j + MAPPING_FRONT;
-        j++;
-    }
-    else if (i >= MAPPING_LEFT + CUBE_SIZE) {
-        cube[i] = j + MAPPING_LEFT;
-        j++;
-    }
-    else if (i >= MAPPING_TOP + CUBE_SIZE) {
-        cube[i] = j + MAPPING_TOP;
-        j++;
-    }
-
-
-
-    else if (i >= MAPPING_BOTTOM) {
-        cube[i] = j + MAPPING_BOTTOM;
-        j++;
-    }
-
-    else if (i >= MAPPING_BACK) {
-        cube[i] = j + MAPPING_BACK;
-        j++;
-    }
-    else if (i >= MAPPING_RIGHT) {
-        cube[i] = j + MAPPING_RIGHT;
-        j++;
-    }
-    else if (i >= MAPPING_FRONT) {
-        cube[i] = j + MAPPING_FRONT;
-        j++;
-    }
-    else if (i >= MAPPING_LEFT) {
-        cube[i] = j + MAPPING_LEFT;
-        j++;
-    }
-    else if (i >= MAPPING_TOP ) {
-        cube[i] = j + MAPPING_TOP;
-        j++;
-    }
-}
+for (int i = 0; i < CUBE_SIZE; i++) cube[i] = i;
 
 }
 
 void print_cube_matrix(int *cube) {
     for (int i = 0; i < CUBE_SIZE; i++) if (i != cube[i]) printf("\tcube_arr[%2d] = buffer_arr[%2d];\n", i, cube[i]);
     
-}
-
-void print_cube_matrix_legacy(int *cube, int *cube_saved) {
-
-    for (int i = 0; i < CUBE_SIZE; i++)
-    if (cube[i] != cube_saved[i]) printf("cube_arr[%d]=buffer_arr[%d];\n", cube_saved[i], cube[i]);
-    //printf("cube_arr[%d]=buffer_arr[%d];\n", cube_saved[i  + CUBE_SIZE], cube[i]);
-    //printf("%d=%d\n", cube_saved[i], cube[i]);
-
 }
 
 void print_cube(int *cube) {
