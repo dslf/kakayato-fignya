@@ -458,46 +458,36 @@ void drawCubeX(int *cube) {
 }
 
 void test_cube() {
-    //char scramble1[] = "302104305442211123511523230451032432545140130023554450";
     int cube[CUBE_SIZE * 2];
-    int scramble_1[] = {3, 0, 2, 1, 0, 4, 3, 0, 5, 4, 4, 2, 2, 1, 1, 1, 2, 3, 5, 1, 1, 5, 2, 3, 2, 3, 0, 4, 5, 1, 0, 3, 2, 4, 3, 2, 5, 4, 5, 1, 4, 0, 1, 3, 0, 0, 2, 3, 5, 5, 4, 4, 5, 0};
-    int scramble_2[] = {5, 1, 1, 5, 0, 1, 0, 4, 0, 2, 4, 2, 4, 1, 5, 5, 3, 1, 3, 1, 3, 1, 2, 3, 4, 2, 1, 4, 2, 2, 4, 3, 5, 2, 2, 3, 0, 0, 3, 2, 4, 0, 4, 3, 1, 0, 3, 5, 5, 5, 0, 4, 0, 5};
-    int scramble_3[] = {0, 2, 0, 2, 0, 1, 0, 3, 4, 4, 5, 2, 3, 1, 1, 2, 1, 5, 3, 5, 5, 2, 2, 3, 1, 0, 5, 1, 4, 1, 0, 3, 5, 3, 1, 0, 2, 0, 3, 4, 4, 4, 1, 2, 5, 2, 4, 4, 5, 5, 0, 3, 3, 4};
-    int scramble_4[] = {5, 4, 1, 4, 0, 2, 1, 3, 3, 2, 1, 2, 1, 1, 3, 3, 2, 5, 0, 0, 0, 2, 2, 4, 3, 5, 4, 2, 0, 5, 5, 3, 1, 1, 1, 1, 2, 0, 3, 5, 4, 2, 4, 4, 4, 4, 3, 5, 5, 5, 0, 0, 3, 0};
-    int scramble_5[] = {4, 0, 1, 4, 0, 4, 4, 3, 2, 3, 5, 5, 4, 1, 1, 1, 1, 5, 1, 5, 3, 4, 2, 2, 3, 3, 3, 0, 0, 5, 1, 3, 5, 5, 0, 4, 2, 3, 0, 2, 4, 3, 0, 1, 2, 4, 2, 2, 0, 5, 2, 0, 5, 1};
-    int scramble_6[] = {0, 0, 4, 3, 0, 0, 5, 1, 2, 1, 4, 1, 5, 1, 1, 5, 5, 3, 4, 4, 1, 0, 2, 4, 2, 3, 0, 5, 2, 0, 0, 3, 1, 2, 4, 2, 3, 3, 4, 5, 4, 2, 3, 2, 4, 0, 2, 1, 3, 5, 5, 3, 1, 5};
-    int scramble_7[] = {1, 0, 5, 0, 0, 3, 2, 3, 2, 5, 2, 5, 1, 1, 5, 4, 5, 4, 3, 2, 3, 2, 2, 5, 0, 1, 5, 0, 4, 2, 1, 3, 1, 3, 5, 0, 1, 3, 4, 0, 4, 4, 2, 0, 0, 1, 2, 4, 3, 5, 4, 3, 4, 1};
-    int scramble_8[] = {3, 3, 1, 2, 0, 4, 2, 4, 4, 5, 3, 3, 5, 1, 5, 4, 0, 0, 0, 1, 3, 1, 2, 0, 4, 0, 2, 5, 5, 4, 4, 3, 2, 1, 3, 5, 5, 5, 2, 1, 4, 2, 1, 0, 1, 3, 1, 0, 3, 5, 4, 0, 2, 2};
-    int scramble_9[] = {3, 2, 3, 0, 0, 3, 4, 1, 3, 5, 2, 3, 0, 1, 1, 4, 4, 1, 5, 4, 0, 5, 2, 0, 4, 4, 2, 2, 0, 4, 4, 3, 2, 1, 3, 1, 0, 5, 2, 1, 4, 1, 2, 3, 5, 0, 5, 0, 3, 5, 2, 1, 5, 5};
-    int scramble_0[] = {4, 5, 4, 2, 0, 2, 3, 1, 1, 3, 3, 2, 4, 1, 4, 0, 0, 5, 5, 2, 2, 1, 2, 0, 3, 5, 4, 0, 5, 1, 2, 3, 5, 1, 4, 5, 0, 3, 0, 4, 4, 3, 1, 0, 2, 4, 1, 5, 3, 5, 0, 3, 1, 2};
+    int scrambles[][54] = {
+        {4, 5, 4, 2, 0, 2, 3, 1, 1, 3, 3, 2, 4, 1, 4, 0, 0, 5, 5, 2, 2, 1, 2, 0, 3, 5, 4, 0, 5, 1, 2, 3, 5, 1, 4, 5, 0, 3, 0, 4, 4, 3, 1, 0, 2, 4, 1, 5, 3, 5, 0, 3, 1, 2},
+        {3, 0, 2, 1, 0, 4, 3, 0, 5, 4, 4, 2, 2, 1, 1, 1, 2, 3, 5, 1, 1, 5, 2, 3, 2, 3, 0, 4, 5, 1, 0, 3, 2, 4, 3, 2, 5, 4, 5, 1, 4, 0, 1, 3, 0, 0, 2, 3, 5, 5, 4, 4, 5, 0},
+        {5, 1, 1, 5, 0, 1, 0, 4, 0, 2, 4, 2, 4, 1, 5, 5, 3, 1, 3, 1, 3, 1, 2, 3, 4, 2, 1, 4, 2, 2, 4, 3, 5, 2, 2, 3, 0, 0, 3, 2, 4, 0, 4, 3, 1, 0, 3, 5, 5, 5, 0, 4, 0, 5},
+        {0, 2, 0, 2, 0, 1, 0, 3, 4, 4, 5, 2, 3, 1, 1, 2, 1, 5, 3, 5, 5, 2, 2, 3, 1, 0, 5, 1, 4, 1, 0, 3, 5, 3, 1, 0, 2, 0, 3, 4, 4, 4, 1, 2, 5, 2, 4, 4, 5, 5, 0, 3, 3, 4},
+        {5, 4, 1, 4, 0, 2, 1, 3, 3, 2, 1, 2, 1, 1, 3, 3, 2, 5, 0, 0, 0, 2, 2, 4, 3, 5, 4, 2, 0, 5, 5, 3, 1, 1, 1, 1, 2, 0, 3, 5, 4, 2, 4, 4, 4, 4, 3, 5, 5, 5, 0, 0, 3, 0},
+        {4, 0, 1, 4, 0, 4, 4, 3, 2, 3, 5, 5, 4, 1, 1, 1, 1, 5, 1, 5, 3, 4, 2, 2, 3, 3, 3, 0, 0, 5, 1, 3, 5, 5, 0, 4, 2, 3, 0, 2, 4, 3, 0, 1, 2, 4, 2, 2, 0, 5, 2, 0, 5, 1},
+        {0, 0, 4, 3, 0, 0, 5, 1, 2, 1, 4, 1, 5, 1, 1, 5, 5, 3, 4, 4, 1, 0, 2, 4, 2, 3, 0, 5, 2, 0, 0, 3, 1, 2, 4, 2, 3, 3, 4, 5, 4, 2, 3, 2, 4, 0, 2, 1, 3, 5, 5, 3, 1, 5},
+        {1, 0, 5, 0, 0, 3, 2, 3, 2, 5, 2, 5, 1, 1, 5, 4, 5, 4, 3, 2, 3, 2, 2, 5, 0, 1, 5, 0, 4, 2, 1, 3, 1, 3, 5, 0, 1, 3, 4, 0, 4, 4, 2, 0, 0, 1, 2, 4, 3, 5, 4, 3, 4, 1},
+        {3, 3, 1, 2, 0, 4, 2, 4, 4, 5, 3, 3, 5, 1, 5, 4, 0, 0, 0, 1, 3, 1, 2, 0, 4, 0, 2, 5, 5, 4, 4, 3, 2, 1, 3, 5, 5, 5, 2, 1, 4, 2, 1, 0, 1, 3, 1, 0, 3, 5, 4, 0, 2, 2},
+        {3, 2, 3, 0, 0, 3, 4, 1, 3, 5, 2, 3, 0, 1, 1, 4, 4, 1, 5, 4, 0, 5, 2, 0, 4, 4, 2, 2, 0, 4, 4, 3, 2, 1, 3, 1, 0, 5, 2, 1, 4, 1, 2, 3, 5, 0, 5, 0, 3, 5, 2, 1, 5, 5},
+    };
 
-    resetCube(cube); rotateCube("U B L D' R2 F2 D2 L2 B2 D L2 R' B R D2 L2 U2 L", cube);
-    if (memcmp(cube, scramble_0, sizeof(scramble_0)) == 0) printf("0th Equal\n"); else printf("0th Not equal\n");
-    
-    resetCube(cube); rotateCube("D R2 B2 F2 U' F2 D L2 B2 D2 B D R2 U R U L' U' L' F2", cube);
-    if (memcmp(cube, scramble_1, sizeof(scramble_1)) == 0) printf("1st Equal\n"); else printf("1st Not equal\n");
-    
-    resetCube(cube); rotateCube("B U' L2 U B U' F' D2 R B2 R' D2 B2 D2 F2 L' U2 R L2 U' L'", cube);
-    if (memcmp(cube, scramble_2, sizeof(scramble_2)) == 0) printf("2nd Equal\n"); else printf("2nd Not equal\n");
+    char moves[][200] = {
+        "U B L D' R2 F2 D2 L2 B2 D L2 R' B R D2 L2 U2 L\0",
+        "D R2 B2 F2 U' F2 D L2 B2 D2 B D R2 U R U L' U' L' F2\0",
+        "B U' L2 U B U' F' D2 R B2 R' D2 B2 D2 F2 L' U2 R L2 U' L'\0",
+        "F R F2 U R' U2 B' U' D2 B D2 F' L2 F' D2 F R2 L2 F2\0",
+        "L2 B' R2 B D2 L2 F2 R2 B' R2 D2 B L R' F R' B2 R U' L2 U\0",
+        "R' D U' L2 U' F2 D L2 U B2 F' R F D' F L2 B' F D'\0",
+        "F2 D R2 D' B2 L2 B2 U2 L2 D R D2 F R2 D R' B' L B2 R'\0",
+        "L B D' L' D' B2 L F2 U' B2 D' F2 D' R2 U' F2 D' R2 U2 F' D'\0",
+        "R' U2 R2 F2 D2 B2 R B2 R' U2 L D' F U' R' D' U R' B D2 R'\0",
+        "D2 R2 D F2 D2 R2 U' B2 U2 B2 L2 R' D' B2 L B' L D U' B' U2\0",
+    };
 
-    resetCube(cube); rotateCube("F R F2 U R' U2 B' U' D2 B D2 F' L2 F' D2 F R2 L2 F2", cube);
-    if (memcmp(cube, scramble_3, sizeof(scramble_3)) == 0) printf("3rd Equal\n"); else printf("3rd Not equal\n");
-
-    resetCube(cube); rotateCube("L2 B' R2 B D2 L2 F2 R2 B' R2 D2 B L R' F R' B2 R U' L2 U", cube);
-    if (memcmp(cube, scramble_4, sizeof(scramble_4)) == 0) printf("4th Equal\n"); else printf("4th Not equal\n");
-    
-    resetCube(cube); rotateCube("R' D U' L2 U' F2 D L2 U B2 F' R F D' F L2 B' F D'", cube);
-    if (memcmp(cube, scramble_5, sizeof(scramble_5)) == 0) printf("5th Equal\n"); else printf("5th Not equal\n");
-
-    resetCube(cube); rotateCube("F2 D R2 D' B2 L2 B2 U2 L2 D R D2 F R2 D R' B' L B2 R'", cube);
-    if (memcmp(cube, scramble_6, sizeof(scramble_6)) == 0) printf("6th Equal\n"); else printf("6th Not equal\n");
-
-    resetCube(cube); rotateCube("L B D' L' D' B2 L F2 U' B2 D' F2 D' R2 U' F2 D' R2 U2 F' D'", cube);
-    if (memcmp(cube, scramble_7, sizeof(scramble_7)) == 0) printf("7th Equal\n"); else printf("7th Not equal\n");
-
-    resetCube(cube); rotateCube("R' U2 R2 F2 D2 B2 R B2 R' U2 L D' F U' R' D' U R' B D2 R'", cube);
-    if (memcmp(cube, scramble_8, sizeof(scramble_8)) == 0) printf("8th Equal\n"); else printf("8th Not equal\n");
-
-    resetCube(cube); rotateCube("D2 R2 D F2 D2 R2 U' B2 U2 B2 L2 R' D' B2 L B' L D U' B' U2", cube);
-    if (memcmp(cube, scramble_9, sizeof(scramble_9)) == 0) printf("9th Equal\n"); else printf("9th Not equal\n");    
+    for (int i = 0; i < 10; i++) {
+        resetCube(cube);        
+        rotateCube(moves[i], cube);
+        printf("Test %d: %s.\n", i, memcmp(cube, scrambles[i], sizeof(scrambles[i])) == 0 ? "passed" : "NOT passed");
+    }
 }
